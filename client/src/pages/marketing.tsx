@@ -307,7 +307,7 @@ export default function Marketing() {
   return (
     <div>
       <section className="py-16 md:py-24 bg-gradient-to-br from-purple-500/10 via-background to-primary/5">
-          <div className="max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16">
+          <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           <div className="max-w-3xl">
             <BrandLogo
               src={mediaLogo} 
@@ -319,17 +319,17 @@ export default function Marketing() {
               Media Services
             </Badge>
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
               data-testid="text-marketing-title"
             >
               Professional Design &
               <span className="text-primary"> Media Services</span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-8">
               From logos to marketing materials, we create stunning designs that
               make your brand stand out. Quality design at affordable prices.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4">
               <a
                 href="#consultation"
                 onClick={(e) => {
@@ -338,9 +338,10 @@ export default function Marketing() {
                     .getElementById("consultation")
                     ?.scrollIntoView({ behavior: "smooth" });
                 }}
+                className="w-full sm:w-auto"
                 data-testid="link-marketing-quote"
               >
-                <Button size="lg" data-testid="button-marketing-quote">
+                <Button size="lg" className="w-full sm:w-auto" data-testid="button-marketing-quote">
                   Get a Free Consultation
                 </Button>
               </a>
@@ -348,7 +349,7 @@ export default function Marketing() {
             <div className="mt-6 space-y-2 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
-                <span>+260 973 807 864</span>
+                <span>+260 962 104 857</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />
@@ -374,7 +375,7 @@ export default function Marketing() {
             </h2>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
             {features.map((feature) => (
               <Card key={feature.title} className="text-center">
                 <CardHeader>
@@ -406,7 +407,7 @@ export default function Marketing() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -416,7 +417,7 @@ export default function Marketing() {
                 <CardDescription>Professional design for all your business needs</CardDescription>
               </CardHeader>
               <CardContent>
-                <Table>
+                <Table className="min-w-[420px]">
                   <TableHeader>
                     <TableRow>
                       <TableHead>Service</TableHead>
@@ -444,7 +445,7 @@ export default function Marketing() {
                 <CardDescription>Marketing materials and digital content</CardDescription>
               </CardHeader>
               <CardContent>
-                <Table>
+                <Table className="min-w-[420px]">
                   <TableHeader>
                     <TableRow>
                       <TableHead>Service</TableHead>
@@ -483,8 +484,8 @@ export default function Marketing() {
       </section>
 
       <section id="consultation" className="py-16 md:py-24">
-        <div className="max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16">
-          <div className="grid lg:grid-cols-2 gap-10 items-start">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-10 items-start">
             <div>
               <p className="text-sm uppercase tracking-wide text-primary font-medium mb-4">
                 Start Your Project
@@ -492,7 +493,7 @@ export default function Marketing() {
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 Media Brief & Consultation
               </h2>
-              <p className="text-lg text-muted-foreground mb-8">
+              <p className="text-base sm:text-lg text-muted-foreground mb-8">
                 Share the creative work you need and we&apos;ll reply with the best-fit service,
                 estimated scope, and next steps for delivery.
               </p>
@@ -536,8 +537,9 @@ export default function Marketing() {
                 .getElementById("consultation")
                 ?.scrollIntoView({ behavior: "smooth" });
             }}
+            className="inline-block w-full sm:w-auto"
           >
-            <Button size="lg" data-testid="button-marketing-cta">
+            <Button size="lg" className="w-full sm:w-auto" data-testid="button-marketing-cta">
               Start Your Project
             </Button>
           </a>

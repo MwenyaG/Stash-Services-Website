@@ -96,11 +96,11 @@ function ServiceCard({ service, index }: { service: ServiceOffer; index: number 
         border border-border/50 hover:border-primary/30
         transition-all duration-500 ease-out
         hover:shadow-xl hover:shadow-primary/5
-        hover:-translate-y-2`}
+        md:hover:-translate-y-2`}
       style={{ animationDelay: `${index * 100}ms` }}
       data-testid={`card-offer-${service.id}`}
     >
-      <CardHeader className="pb-4">
+      <CardHeader className="pb-4 space-y-2">
         <BrandLogo
           src={service.logo}
           alt={service.brandName}
@@ -119,7 +119,7 @@ function ServiceCard({ service, index }: { service: ServiceOffer; index: number 
 
       <CardContent className="flex-grow flex flex-col">
         <ul
-          className="space-y-2 text-sm text-muted-foreground mb-6"
+          className="space-y-2 text-sm leading-6 text-muted-foreground mb-6"
           data-testid={`text-offer-intro-${service.id}`}
         >
           {service.bullets.map((bullet, i) => (
@@ -175,18 +175,18 @@ export function WhatWeOffer() {
         <div className="absolute top-1/3 left-1/4 w-2 h-2 bg-amber-500/20 rounded-full animate-pulse" style={{ animationDelay: "0.5s" }} />
       </div>
 
-      <div className="max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16 relative z-10">
-        <div className="text-center mb-14">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-10 lg:px-16 relative z-10">
+        <div className="text-center mb-12 md:mb-14">
           <p className="text-sm uppercase tracking-widest text-primary font-medium mb-3">Our Brands</p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" data-testid="text-what-we-offer-title">
             What We Offer
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="text-what-we-offer-description">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="text-what-we-offer-description">
             Four specialized brands under one roof, delivering excellence across Zambia.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-6 items-start">
+        <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-5 md:gap-6 items-start">
           {services.map((service, index) => (
             <ServiceCard key={service.id} service={service} index={index} />
           ))}

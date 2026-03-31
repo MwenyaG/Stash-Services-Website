@@ -72,33 +72,100 @@ const features = [
   },
 ];
 
-const servicePackages = [
+type ServicePackage = {
+  name: string;
+  price: string;
+  priceNote: string;
+  description: string;
+  features: string[];
+  whyChoose: string;
+  addOns?: string[];
+  highlighted?: boolean;
+  badge?: string;
+};
+
+const servicePackages: ServicePackage[] = [
   {
-    name: "Standard Plan",
-    price: "K2,000",
-    priceNote: "per Application",
-    description: "Ideal for clients who already have their documents prepared",
+    name: "Consultation Package",
+    price: "From K500+",
+    priceNote: "per session",
+    description:
+      "Best for individuals or businesses exploring immigration options or preparing applications.",
     features: [
-      "Uploading and submission to the Immigration Portal",
-      "Basic application monitoring",
-      "Client guidance on next procedural steps",
+      "One-on-one consultation to assess your immigration or permit needs",
+      "Guidance on visa types, investor permits, and employment permits",
+      "Initial labour law and compliance overview",
+      "Comprehensive document audit and review",
+      "Identification of missing, incomplete, or improperly prepared documents",
+      "Recommendations to make your application audit-ready",
     ],
+    addOns: [
+      "Document sourcing or notarization: custom pricing",
+      "Labour advisory consultation: +K1,500",
+    ],
+    whyChoose:
+      "Get clarity and confidence before you submit. This package helps reduce the risk of rejection, fines, delays, and avoidable documentation issues.",
   },
   {
-    name: "Premium Plan",
-    price: "From K15,000+",
-    priceNote: "varies based on complexity",
-    description: "Full end-to-end application management",
+    name: "Basic Plan",
+    price: "From K2,000",
+    priceNote: "per case",
+    description:
+      "Best for clients managing straightforward applications who want professional guidance without handing over the full case.",
     features: [
-      "Full end-to-end application management",
-      "Document preparation, verification & compliance checks",
-      "Personalized consultation and expert guidance",
-      "Active follow-ups with immigration authorities",
-      "Handling of rejections, appeals & resubmissions",
-      "Priority handling for complex or high-risk cases",
-      "Legal advisory and representation where required",
+      "Tailored document checklist for your application",
+      "Document verification and basic review",
+      "Identification of missing or incorrect documents",
+      "Review of your completed application before submission",
+      "Error correction and improvement suggestions",
+      "One consultation session, in-person or virtual",
+      "Clear guidance on process requirements and next steps",
     ],
+    whyChoose:
+      "Ideal if you want to submit independently while avoiding costly mistakes, delays, and rejection caused by avoidable errors.",
+  },
+  {
+    name: "Standard Plan",
+    price: "K6,000+",
+    priceNote: "most popular package",
+    description:
+      "Best for individuals and SMEs who want reliable professional support, stronger applications, and less stress during the process.",
+    features: [
+      "Form filling assistance that is accurate and error-free",
+      "Document preparation guidance and comprehensive review",
+      "Professionally drafted cover letters",
+      "Application submission on your behalf",
+      "Active follow-ups with immigration authorities",
+      "Status updates and support on additional requirements",
+      "Basic legal compliance checks",
+      "Appeal letter drafting if the case is rejected",
+      "Ongoing WhatsApp and email support throughout the process",
+    ],
+    whyChoose:
+      "This is the smart choice for serious applicants who want professional handling, continuous follow-ups, and a much stronger chance of approval. Even if challenges arise, appeal support means you are not left stranded.",
     highlighted: true,
+    badge: "Most Popular",
+  },
+  {
+    name: "Premium Package",
+    price: "From K16,000",
+    priceNote: "per case",
+    description:
+      "Best for serious clients who want full handling, compliance support, and peace of mind from start to finish.",
+    features: [
+      "Full preparation and submission of permits or visa applications",
+      "Handling of employment, residence, or investor permits",
+      "Detailed document review and verification",
+      "Professionally drafted cover letters and formal responses",
+      "Management of queries and compliance issues",
+      "Appeal drafting for the same case if rejected",
+      "Liaison with immigration authorities on your behalf",
+      "Preparation for immigration inspections and document reviews",
+      "Assigned case handler with ongoing WhatsApp and email support",
+      "Priority follow-ups and regular progress updates until final decision",
+    ],
+    whyChoose:
+      "Designed for clients who want everything handled professionally with minimal risk, stronger compliance, and expert attention at every stage.",
   },
 ];
 
@@ -201,7 +268,7 @@ function BookingForm() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="serviceType">Service Type</Label>
+              <Label htmlFor="serviceType">Package of Interest</Label>
               <Select
                 value={formData.serviceType}
                 onValueChange={(value) =>
@@ -209,30 +276,18 @@ function BookingForm() {
                 }
               >
                 <SelectTrigger data-testid="select-booking-service">
-                  <SelectValue placeholder="Select a service" />
+                  <SelectValue placeholder="Select a package" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="Employment Permit">
-                    Employment Permit
+                  <SelectItem value="Consultation Package">
+                    Consultation Package
                   </SelectItem>
-                  <SelectItem value="Investor Permit">
-                    Investor Permit
+                  <SelectItem value="Basic Plan">Basic Plan</SelectItem>
+                  <SelectItem value="Standard Plan">Standard Plan</SelectItem>
+                  <SelectItem value="Premium Package">
+                    Premium Package
                   </SelectItem>
-                  <SelectItem value="Residence Permit">
-                    Residence Permit
-                  </SelectItem>
-                  <SelectItem value="Business Visa">Business Visa</SelectItem>
-                  <SelectItem value="Transit Visa">Transit Visa</SelectItem>
-                  <SelectItem value="Visiting Permit">
-                    Visiting Permit
-                  </SelectItem>
-                  <SelectItem value="Immigration Appeal">
-                    Immigration Appeal
-                  </SelectItem>
-                  <SelectItem value="Status Regularization">
-                    Status Regularization
-                  </SelectItem>
-                  <SelectItem value="Other">Other</SelectItem>
+                  <SelectItem value="Not Sure Yet">Not Sure Yet</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -242,7 +297,7 @@ function BookingForm() {
             <Label htmlFor="message">Tell us about your situation</Label>
             <Textarea
               id="message"
-              placeholder="Describe your immigration needs, current status, and any specific requirements..."
+              placeholder="Describe your immigration needs, permit or visa type, current status, and any specific requirements..."
               className="min-h-32 resize-none"
               value={formData.message}
               onChange={(e) =>
@@ -272,7 +327,7 @@ export default function Immigration() {
   return (
     <div>
       <section className="py-16 md:py-24 bg-gradient-to-br from-emerald-500/10 via-background to-primary/5">
-        <div className="max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           <div className="max-w-3xl">
             <BrandLogo
               src={leadingLogo}
@@ -284,22 +339,22 @@ export default function Immigration() {
               Stash Leading Services
             </Badge>
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
               data-testid="text-immigration-title"
             >
               Immigration &
               <span className="text-primary"> Consultancy Services</span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-4">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-4">
               Professional consultancy firm specializing in immigration, legal
               compliance, and advisory services in Zambia.
             </p>
-            <p className="text-lg text-muted-foreground mb-8">
+            <p className="text-base sm:text-lg text-muted-foreground mb-8">
               We assist individuals, investors, and corporate entities in
               navigating complex immigration procedures efficiently, lawfully,
               and with confidence.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4">
               <a
                 href="#booking"
                 onClick={(e) => {
@@ -308,9 +363,10 @@ export default function Immigration() {
                     .getElementById("booking")
                     ?.scrollIntoView({ behavior: "smooth" });
                 }}
+                className="w-full sm:w-auto"
                 data-testid="link-immigration-consult"
               >
-                <Button size="lg" data-testid="button-immigration-consult">
+                <Button size="lg" className="w-full sm:w-auto" data-testid="button-immigration-consult">
                   Book Now
                 </Button>
               </a>
@@ -322,11 +378,13 @@ export default function Immigration() {
                     .getElementById("pricing")
                     ?.scrollIntoView({ behavior: "smooth" });
                 }}
+                className="w-full sm:w-auto"
                 data-testid="link-immigration-services"
               >
                 <Button
                   size="lg"
                   variant="outline"
+                  className="w-full sm:w-auto"
                   data-testid="button-immigration-services"
                 >
                   View Services
@@ -352,7 +410,7 @@ export default function Immigration() {
       </section>
 
       <section className="py-16 md:py-24">
-        <div className="max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           <div className="text-center space-y-4 mb-12">
             <p className="text-sm uppercase tracking-wide text-primary font-medium">
               Our Approach
@@ -386,7 +444,7 @@ export default function Immigration() {
       </section>
 
       <section className="py-16 md:py-24 bg-muted/30">
-        <div className="max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           <div className="text-center space-y-4 mb-12">
             <p className="text-sm uppercase tracking-wide text-primary font-medium">
               Scope of Services
@@ -415,7 +473,7 @@ export default function Immigration() {
       </section>
 
       <section id="pricing" className="py-16 md:py-24">
-        <div className="max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           <div className="text-center space-y-4 mb-12">
             <p className="text-sm uppercase tracking-wide text-primary font-medium">
               Service Packages
@@ -423,13 +481,14 @@ export default function Immigration() {
             <h2 className="text-3xl md:text-4xl font-bold">
               Our Service Plans
             </h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              Choose the package that best suits your needs. Transparent pricing
-              and clear communication.
+            <p className="text-muted-foreground max-w-3xl mx-auto">
+              From a focused consultation to full case handling, our immigration
+              packages are structured to match different levels of support,
+              complexity, and compliance needs.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid xl:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
             {servicePackages.map((pkg) => (
               <Card
                 key={pkg.name}
@@ -438,10 +497,10 @@ export default function Immigration() {
               >
                 {pkg.highlighted && (
                   <Badge className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    Recommended
+                    {pkg.badge ?? "Recommended"}
                   </Badge>
                 )}
-                <CardHeader className="text-center pb-4">
+                <CardHeader className="pb-4">
                   <CardTitle className="text-2xl">{pkg.name}</CardTitle>
                   <div className="mt-4">
                     <span className="text-4xl font-bold text-primary">
@@ -451,11 +510,19 @@ export default function Immigration() {
                       {pkg.priceNote}
                     </p>
                   </div>
-                  <CardDescription className="mt-4">
+                  <CardDescription className="mt-4 text-sm leading-6">
                     {pkg.description}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
+                  <div className="rounded-xl border bg-muted/30 p-4">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-primary">
+                      Why Choose This Package
+                    </p>
+                    <p className="mt-2 text-sm text-muted-foreground leading-6">
+                      {pkg.whyChoose}
+                    </p>
+                  </div>
                   <ul className="space-y-3">
                     {pkg.features.map((feature) => (
                       <li key={feature} className="flex items-start gap-3">
@@ -464,6 +531,23 @@ export default function Immigration() {
                       </li>
                     ))}
                   </ul>
+                  {pkg.addOns && (
+                    <div className="rounded-xl border border-dashed p-4">
+                      <p className="text-xs font-semibold uppercase tracking-wide text-primary">
+                        Optional Add-Ons
+                      </p>
+                      <ul className="mt-3 space-y-2">
+                        {pkg.addOns.map((item) => (
+                          <li key={item} className="flex items-start gap-3">
+                            <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+                            <span className="text-sm text-muted-foreground">
+                              {item}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                   <Link href="#booking">
                     <Button
                       className="w-full mt-4"
@@ -480,8 +564,8 @@ export default function Immigration() {
       </section>
 
       <section id="booking" className="py-16 md:py-24 bg-muted/30">
-        <div className="max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16">
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-start">
             <div>
               <p className="text-sm uppercase tracking-wide text-primary font-medium mb-4">
                 Get Started
@@ -489,7 +573,7 @@ export default function Immigration() {
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 Book a Consultation
               </h2>
-              <p className="text-lg text-muted-foreground mb-8">
+              <p className="text-base sm:text-lg text-muted-foreground mb-8">
                 We act not just as service providers, but as strategic partners
                 committed to our clients' long-term success in Zambia.
               </p>

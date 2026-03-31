@@ -349,7 +349,7 @@ export default function Lending() {
   return (
     <div>
       <section className="py-16 md:py-24 bg-gradient-to-br from-amber-500/10 via-background to-primary/5">
-        <div className="max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           <div className="max-w-3xl">
             <BrandLogo
               src={lendingLogo}
@@ -361,20 +361,20 @@ export default function Lending() {
               Loan Services
             </Badge>
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
               data-testid="text-lending-title"
             >
               Collateral Based
               <span className="text-primary"> Loans</span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-4">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-4">
               Empowering Financial Futures, One Loan at a Time
             </p>
-            <p className="text-lg text-muted-foreground mb-8">
+            <p className="text-base sm:text-lg text-muted-foreground mb-8">
               Get quick access to funds using your valuable items as collateral.
               Low interest rates, transparent terms, and fast approval.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4">
               <a
                 href="#loan-application"
                 onClick={(e) => {
@@ -383,9 +383,10 @@ export default function Lending() {
                     .getElementById("loan-application")
                     ?.scrollIntoView({ behavior: "smooth" });
                 }}
+                className="w-full sm:w-auto"
                 data-testid="link-lending-apply"
               >
-                <Button size="lg" data-testid="button-lending-apply">
+                <Button size="lg" className="w-full sm:w-auto" data-testid="button-lending-apply">
                   Apply Now
                 </Button>
               </a>
@@ -408,7 +409,7 @@ export default function Lending() {
             </h2>
           </div>
 
-          <div className="grid sm:grid-cols-3 gap-6 mb-12">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 mb-12">
             {features.map((feature) => (
               <Card key={feature.title} className="text-center">
                 <CardHeader>
@@ -457,7 +458,7 @@ export default function Lending() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
             {loanRates.map((loan) => (
               <Card
                 key={loan.duration}
@@ -472,7 +473,7 @@ export default function Lending() {
                 <CardHeader className="text-center pb-4">
                   <CardTitle className="text-xl">{loan.duration}</CardTitle>
                   <div className="mt-4">
-                    <span className="text-5xl font-bold text-primary">
+                    <span className="text-4xl sm:text-5xl font-bold text-primary">
                       {loan.rate}
                     </span>
                     <span className="text-muted-foreground ml-1">interest</span>
@@ -535,8 +536,8 @@ export default function Lending() {
         </div>
       </section>
       <section id="loan-application" className="py-16 md:py-24 bg-muted/30">
-        <div className="max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16">
-          <div className="grid lg:grid-cols-2 gap-10 items-start">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-10 items-start">
             <div>
               <p className="text-sm uppercase tracking-wide text-primary font-medium mb-4">
                 Loan Intake
@@ -544,7 +545,7 @@ export default function Lending() {
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 Loan Application Form
               </h2>
-              <p className="text-lg text-muted-foreground mb-8">
+              <p className="text-base sm:text-lg text-muted-foreground mb-8">
                 This form helps us understand your collateral, preferred loan size,
                 and repayment capacity before we contact you.
               </p>
@@ -580,16 +581,17 @@ export default function Lending() {
             Contact us today to get a loan against your valuables. Fast approval
             and same-day disbursement available.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <a href="tel:0968650955">
-              <Button size="lg" data-testid="button-lending-call">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-3 sm:gap-4">
+            <a href="tel:0968650955" className="w-full sm:w-auto">
+              <Button size="lg" className="w-full sm:w-auto" data-testid="button-lending-call">
                 Call 0968 650 955
               </Button>
             </a>
-            <a href="tel:0774861486">
+            <a href="tel:0774861486" className="w-full sm:w-auto">
               <Button
                 size="lg"
                 variant="outline"
+                className="w-full sm:w-auto"
                 data-testid="button-lending-call-alt"
               >
                 Call 0774 861 486

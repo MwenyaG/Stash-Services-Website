@@ -1,7 +1,7 @@
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { BrandLogo } from "@/components/brand-logo";
 import { Globe, Shirt, Megaphone, Banknote } from "lucide-react";
-import { SiFacebook, SiWhatsapp, SiInstagram } from "react-icons/si";
+import { SiFacebook, SiWhatsapp, SiLinkedin } from "react-icons/si";
 import lead from "@/assets/stash-leading-logo.png";
 
 const services = [
@@ -11,13 +11,45 @@ const services = [
   { label: "Loan Services", href: "/lending", icon: Banknote },
 ];
 
-const socialLinks = [
-  { icon: SiFacebook, href: "#", label: "Facebook" },
-  { icon: SiWhatsapp, href: "https://wa.me/260973848122", label: "WhatsApp" },
-  { icon: SiInstagram, href: "#", label: "Instagram" },
-];
-
 export function Footer() {
+  const [location] = useLocation();
+  const activeContact = location.startsWith("/laundry")
+    ? {
+        phoneHref: "tel:+260973848122",
+        phoneLabel: "+260 973 848 122",
+      }
+    : location.startsWith("/marketing")
+      ? {
+          phoneHref: "tel:+260962104857",
+          phoneLabel: "+260 962 104 857",
+        }
+      : location.startsWith("/lending")
+        ? {
+            phoneHref: "tel:+260968650955",
+            phoneLabel: "+260 968 650 955",
+          }
+      : {
+          phoneHref: "tel:+260973807864",
+          phoneLabel: "+260 973 807 864",
+        };
+  const socialLinks = [
+    {
+      icon: SiFacebook,
+      href: "https://www.facebook.com/profile.php?id=100081676291092",
+      label: "Facebook",
+    },
+    {
+      icon: SiWhatsapp,
+      href: "https://api.whatsapp.com/send?phone=%2B260973807864&token=eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjEyNSJ9.eyJleHAiOjE3NzUwNjk4NzQsInBob25lIjoiKzI2MDk3MzgwNzg2NCIsImNvbnRleHQiOiJBZmhUSU9LckRFMVBPa3ZBUjlWQkx5NERfQU9FXzR1MHJpNXRlNXJVUFBWMWQ4cTVic3RSeDc5TFN0NHNQTjQwRDRNVUNaLTZPSWxvQlp5a3NZSUJyMjYyMm1wYlNyX3cwUzBHWk9nODNnQk1Fd3pMVFZ0V0lzYVVUWGhHbmlPVVBsS0dVLXNkdjRoQWZMS0lsaEFJSzdCNU9RIiwic291cmNlIjoiRkJfUGFnZSIsImFwcCI6ImZhY2Vib29rIiwiZW50cnlfcG9pbnQiOiJwYWdlX2N0YSJ9.EkxhG1t-WRc7cHQ8A4ysiypNHb1fRB4ExJ4XSRF7BPaQB4bIXDRkt_uQ2MWhxY-VmxifD8hrX3SWxiZSDIZn3w",
+      label: "WhatsApp",
+    },
+    {
+      icon: SiLinkedin,
+      href: "https://www.linkedin.com/company/stash-leading-services/",
+      label: "LinkedIn",
+    },
+  ];
+
   return (
     <footer className="bg-card border-t">
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-16">
@@ -44,6 +76,8 @@ export function Footer() {
                 <a
                   key={social.label}
                   href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
                   className="w-9 h-9 rounded-lg bg-muted flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors"
                   aria-label={social.label}
                   data-testid={`link-social-${social.label.toLowerCase()}`}
@@ -78,10 +112,10 @@ export function Footer() {
               <li>Lusaka, Zambia</li>
               <li>
                 <a
-                  href="tel:0973807864"
+                  href={activeContact.phoneHref}
                   className="hover:text-foreground transition-colors"
                 >
-                  +260 973 807 864
+                  {activeContact.phoneLabel}
                 </a>
               </li>
 

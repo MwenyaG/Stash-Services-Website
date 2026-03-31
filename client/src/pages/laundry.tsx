@@ -261,7 +261,7 @@ export default function Laundry() {
           `${it.item} (${it.serviceType}) x${it.qty} — ${it.price} each = K${(it.priceValue * it.qty).toFixed(2)}`,
       )
       .join("\n");
-    const content = `STASH LAUNDRY SERVICES\n26570, Lunu Rd, Lusaka 10101, Zambia\nPhone: +260 973 807 864\n\nINVOICE\n${"=".repeat(40)}\n${rows}\n${"=".repeat(40)}\nTOTAL: K${total.toFixed(2)}\n\nThank you for choosing Stash Laundry!`;
+    const content = `STASH LAUNDRY SERVICES\n26570, Lunu Rd, Lusaka 10101, Zambia\nPhone: +260 973 848 122\n\nINVOICE\n${"=".repeat(40)}\n${rows}\n${"=".repeat(40)}\nTOTAL: K${total.toFixed(2)}\n\nThank you for choosing Stash Laundry!`;
     const win = window.open("", "_blank");
     if (win) {
       win.document.write(
@@ -340,8 +340,8 @@ export default function Laundry() {
       <TableRow
         data-testid={`row-${category}-${row.item.toLowerCase().replace(/\s+/g, "-")}`}
       >
-        <TableCell className="font-medium">{row.item}</TableCell>
-        <TableCell className="text-right">
+        <TableCell className="min-w-[170px] font-medium">{row.item}</TableCell>
+        <TableCell className="min-w-[110px] text-right">
           <div className="flex items-center justify-end gap-2">
             <span className={noStd ? "text-muted-foreground" : ""}>
               {row.price72}
@@ -357,7 +357,7 @@ export default function Laundry() {
             )}
           </div>
         </TableCell>
-        <TableCell className="text-right">
+        <TableCell className="min-w-[130px] text-right">
           <div className="flex items-center justify-end gap-2">
             <span
               className={
@@ -387,8 +387,8 @@ export default function Laundry() {
       <TableRow
         data-testid={`row-sofa-${row.item.toLowerCase().replace(/\s+/g, "-")}`}
       >
-        <TableCell className="font-medium">{row.item}</TableCell>
-        <TableCell className="text-right">
+        <TableCell className="min-w-[170px] font-medium">{row.item}</TableCell>
+        <TableCell className="min-w-[110px] text-right">
           <div className="flex items-center justify-end gap-2">
             <span>{row.price72}</span>
             <Checkbox
@@ -400,7 +400,7 @@ export default function Laundry() {
             />
           </div>
         </TableCell>
-        <TableCell className="text-right text-primary font-medium">
+        <TableCell className="min-w-[110px] text-right text-primary font-medium">
           {row.transport}
         </TableCell>
       </TableRow>
@@ -410,7 +410,7 @@ export default function Laundry() {
   return (
     <div>
       <section className="py-16 md:py-24 bg-gradient-to-br from-blue-500/10 via-background to-primary/5">
-        <div className="max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           <div className="max-w-3xl">
             <BrandLogo
               src={laundryLogo}
@@ -422,20 +422,20 @@ export default function Laundry() {
               Laundry and Cleaning Services
             </Badge>
             <h1
-              className="text-4xl md:text-5xl font-bold mb-4"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
               data-testid="text-laundry-title"
             >
               Professional Laundry & Cleaning Services
             </h1>
             <p
-              className="text-lg text-muted-foreground mb-8"
+              className="text-base sm:text-lg text-muted-foreground mb-8"
               data-testid="text-laundry-description"
             >
               From everyday garments to specialty items, we provide
               comprehensive cleaning solutions with professional care and
               attention to detail.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4">
               <a
                 href="#pricing"
                 onClick={(e) => {
@@ -444,11 +444,13 @@ export default function Laundry() {
                     .getElementById("pricing")
                     ?.scrollIntoView({ behavior: "smooth" });
                 }}
+                className="w-full sm:w-auto"
                 data-testid="link-laundry-pricing"
               >
                 <Button
                   size="lg"
                   variant="outline"
+                  className="w-full sm:w-auto"
                   data-testid="button-laundry-pricing"
                 >
                   View Pricing
@@ -458,7 +460,7 @@ export default function Laundry() {
             <div className="mt-6 space-y-2 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
-                <span>+260 973 807 864</span>
+                <span>+260 973 848 122</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4" />
@@ -483,7 +485,7 @@ export default function Laundry() {
               Premium Laundry Services
             </h2>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
             {features.map((feature) => (
               <Card key={feature.title} className="text-center">
                 <CardHeader>
@@ -519,7 +521,7 @@ export default function Laundry() {
           <Tabs defaultValue="dry-cleaning" className="w-full">
             <div className="flex justify-center mb-8">
               <TabsList
-                className="flex flex-wrap h-auto gap-1 p-1"
+                className="flex w-full justify-start gap-1 p-1 sm:w-auto"
                 data-testid="tabs-pricing"
               >
                 <TabsTrigger
@@ -553,7 +555,7 @@ export default function Laundry() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Table>
+                  <Table className="min-w-[560px]">
                     <TableHeader>
                       <TableRow>
                         <TableHead>Item</TableHead>
@@ -586,7 +588,7 @@ export default function Laundry() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Table>
+                  <Table className="min-w-[560px]">
                     <TableHeader>
                       <TableRow>
                         <TableHead>Item</TableHead>
@@ -620,7 +622,7 @@ export default function Laundry() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Table>
+                  <Table className="min-w-[560px]">
                     <TableHeader>
                       <TableRow>
                         <TableHead>Item</TableHead>
@@ -654,7 +656,7 @@ export default function Laundry() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Table>
+                  <Table className="min-w-[560px]">
                     <TableHeader>
                       <TableRow>
                         <TableHead>Item</TableHead>
@@ -681,7 +683,7 @@ export default function Laundry() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Table>
+                  <Table className="min-w-[560px]">
                     <TableHeader>
                       <TableRow>
                         <TableHead>Item</TableHead>
@@ -725,10 +727,10 @@ export default function Laundry() {
       </section>
 
       {invoiceItems.size > 0 && (
-        <div className="fixed bottom-6 right-6 z-50">
+        <div className="fixed inset-x-4 bottom-4 z-50 sm:inset-x-auto sm:right-6 sm:bottom-6">
           <Button
             size="lg"
-            className="shadow-2xl gap-2 pr-5"
+            className="w-full shadow-2xl gap-2 pr-5 sm:w-auto"
             onClick={() => setInvoiceOpen(true)}
             data-testid="button-view-invoice"
           >
@@ -763,10 +765,10 @@ export default function Laundry() {
               <p className="text-sm opacity-80">
                 26570, Lunu Rd, Lusaka 10101, Zambia
               </p>
-              <p className="text-sm opacity-80">+260 973 807 864</p>
+              <p className="text-sm opacity-80">+260 973 848 122</p>
             </div>
 
-            <Table>
+            <Table className="min-w-[720px]">
               <TableHeader>
                 <TableRow>
                   <TableHead>Item</TableHead>
@@ -844,10 +846,10 @@ export default function Laundry() {
             </div>
           </div>
 
-          <div className="flex gap-3 mt-2">
+          <div className="mt-2 flex flex-col gap-3 sm:flex-row">
             <Button
               type="button"
-              className="flex-1 gap-2"
+              className="w-full gap-2 sm:flex-1"
               onClick={printInvoice}
               data-testid="button-print-invoice"
             >
@@ -857,6 +859,7 @@ export default function Laundry() {
             <Button
               type="button"
               variant="outline"
+              className="w-full sm:w-auto"
               onClick={() => {
                 setInvoiceItems(new Map());
                 setInvoiceOpen(false);
@@ -996,8 +999,9 @@ export default function Laundry() {
                 .getElementById("pricing")
                 ?.scrollIntoView({ behavior: "smooth" });
             }}
+            className="inline-block w-full sm:w-auto"
           >
-            <Button size="lg" data-testid="button-laundry-cta">
+            <Button size="lg" className="w-full sm:w-auto" data-testid="button-laundry-cta">
               Build Your Quote
             </Button>
           </a>
