@@ -1,4 +1,4 @@
-# Stash Connect 2
+# Stash Connect
 
 Stash Connect 2 is a multi-service business website for Stash Leading Services. It presents four service lines in one experience:
 
@@ -8,6 +8,34 @@ Stash Connect 2 is a multi-service business website for Stash Leading Services. 
 - Stash Lending: collateral-based loan services
 
 The project combines a React + Vite frontend with a lightweight Express server. The frontend handles the customer journey and service pages, while the backend provides small API utilities such as Google review fetching and contact-message storage.
+
+## Screenshots
+
+### Homepage
+
+#### Light Mode
+
+![Homepage Light Mode](https://github.com/user-attachments/assets/de82e9e0-61e6-4338-a323-7e416d723c47)
+
+#### Dark Mode
+
+![Homepage Dark Mode](https://github.com/user-attachments/assets/af5c5c44-ed6c-44d3-a482-9ef8535c04e8)
+
+### Immigration
+
+![Immigration Page](https://github.com/user-attachments/assets/38827cf4-641b-440f-8b58-9c06205f062e)
+
+### Laundry
+
+![Laundry Page](https://github.com/user-attachments/assets/d736ab96-ffc1-4016-b8db-6e46106a0d73)
+
+### Media
+
+![Media Page](https://github.com/user-attachments/assets/94128c19-c751-4eed-a401-98b954404e83)
+
+### Loans
+
+![Loans Page](https://github.com/user-attachments/assets/4344a001-e695-4d4d-8251-b2cd75b35906)
 
 ## What the Website Does
 
