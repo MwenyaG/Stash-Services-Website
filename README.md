@@ -1,6 +1,6 @@
 # Stash Connect
 
-Stash Connect 2 is a multi-service business website for Stash Leading Services. It presents four service lines in one experience:
+Stash Connect is a multi-service business website for Stash Leading Services. It presents four service lines in one experience:
 
 - Stash Leading: immigration and consultancy services
 - Stash Laundry: laundry and cleaning services
